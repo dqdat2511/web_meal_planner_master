@@ -1,0 +1,240 @@
+
+<div class="container-xxl">
+  <div class="main-content"  data-aos="fade-down"
+  data-aos-easing="linear"
+  data-aos-duration="1500">      
+<!-- home section -->
+<section class="home" id="home" >
+
+  <div class="content" >
+      <h3>Huge selection 
+          <br>delicious meals ideas
+      </h3>
+      <p>  Khám phá tuyển chọn khổng lồ của chúng tôi về các ý tưởng công thức nấu ăn ngon bao gồm
+          <br>món tráng miệng dễ làm, ý tưởng bữa tối thuần chay và chay ngon, công thức nấu mì ống tuyệt đẹp, bánh nhanh, bữa ăn thân thiện với gia đình và công thức nấu ăn phù hợp với BMR của bạn.
+      </p>
+      <% if (userStatus !== ''&& userStatus.length > 0) { %>
+        <a href="/mymeal/<%=userStatus[0]._id%> " class="btn btn-primary btn-dark btn-lg px-4 me-md-2">Bữa ăn của tôi</a>
+      <% } %>  
+      <a href="/bmr-build" class="btn btn-outline-secondary btn-lg px-4 me-md-2" style="margin-left: 10px;">BMR Build</a>
+
+  </div>
+  <div class="img">
+    <img src="/img/hero-image.png" style="margin-top: 10%;" loading="lazy" alt="Meal-Planner-logo">
+  </div>
+</section>
+<!-- home section -->
+</div>
+</div>
+<div class="container" id="dishe" data-aos="fade-up"
+  data-aos-duration="1500">
+    <h1 class="text-center">Các loại món</h1>    
+<!-- Categories Start -->
+<div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 py-4">
+  <% if(categories != '') { %>
+    <% categories.forEach(function(category, index) { %>
+      <a href="/categories/<%- category.name %>" class="col text-center category__link">
+        <div class="category__img shadow">
+          <img src="img/<%- category.image %>" alt="<%- category.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%- category.name %></div>
+      </a>
+      
+    <% }) %>
+  <% } %>
+
+  <a href="/categories" class="col text-center category__link">
+    <div class="category__img shadow">
+      <img src="img/view-all.jpg" alt="View All Categories" loading="lazy">
+    </div>
+    <div class="pt-1">View All</div>
+  </a>
+
+</div>
+</div>
+<!-- Categories End -->
+
+
+ <!--  Get lastest meals -->
+<div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+    <h1 class="text-center">Món ăn mới nhất</h1>
+    <div class="row" style="margin-top: 20px;" data-aos="fade-up"
+        data-aos-duration="3000">
+    <section class="pb-4 pt-4">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+       <% if(food != '') {%> 
+        <% food.latest.forEach(function(recipe, index){ %> 
+          <div class="col-md-3 py-3 py-md-0">    
+        <div class="col text-center category__link">
+          <div class="card">
+         <a href="/recipe/<%= recipe._id %>" >
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>"loading="lazy">
+            </div>               
+          </a>
+          <div class="card-body">
+            <div class="pt-1"><%= recipe.name %></div>  
+        <div class="col text-dark category__link">
+          <h6><%=recipe.calories%> Kcal <button id=<%=recipe.id%> class="btn mr-md-2 mb-md-0 mb-2 btn-warning btn-submit" >Add to meal</button></h6>  
+        </div>   
+      </div>  
+      </div>
+    </div> 
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+   </div>
+</div>
+  <!-- End Get meals -->
+  
+
+<!--  Get chien meals -->
+
+<div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+    <h1 class="text-center">Món Chiên</h1>
+    <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+        data-aos-duration="3000">
+    <section class="pb-4 pt-4">
+      <div class="d-flex mb-2 align-items-center">
+        <a href="/categories/Chiên" class="ms-auto">View More</a>
+      </div>
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+       <%if(typeof food.chien !== 'undefined' && food.chien.length > 0) {%> 
+        <% food.chien.forEach(function(recipe, index){ %> 
+          <div class="col-md-3 py-3 py-md-0">    
+        <div class="col text-center category__link">
+          <div class="card">
+         <a href="/recipe/<%= recipe._id %>" >
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>"loading="lazy">
+            </div>               
+          </a>
+          <div class="card-body">
+            <div class="pt-1"><%= recipe.name %></div>  
+        <div class="col text-dark category__link">
+          <h6><%=recipe.calories%> Kcal <button id=<%=recipe.id%> class="btn mr-md-2 mb-md-0 mb-2 btn-warning btn-submit" >Add to meal</button></h6>  
+        </div>   
+      </div>  
+      </div>
+    </div> 
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+   </div>
+</div>
+
+<!-- End chien meals -->
+
+<!--  Get nuong meals -->
+<div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+    <h1 class="text-center">Món Nướng</h1>
+    <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+        data-aos-duration="3000">
+    <section class="pb-4 pt-4">
+      <div class="d-flex mb-2 align-items-center">
+        <a href="/categories/Nướng" class="ms-auto">View More</a>
+      </div>
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+       <%if(typeof food.nuong !== 'undefined' && food.nuong.length > 0) {%> 
+        <% food.nuong.forEach(function(recipe, index){ %> 
+          <div class="col-md-3 py-3 py-md-0">    
+        <div class="col text-center category__link">
+          <div class="card">
+         <a href="/recipe/<%= recipe._id %>" >
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>"loading="lazy">
+            </div>               
+          </a>
+          <div class="card-body">
+            <div class="pt-1"><%= recipe.name %></div>  
+        <div class="col text-dark category__link">
+          <h6><%=recipe.calories%> Kcal <button id=<%=recipe.id%> class="btn mr-md-2 mb-md-0 mb-2 btn-warning btn-submit" >Add to meal</button></h6>  
+        </div>   
+      </div>  
+      </div>
+    </div> 
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+   </div>
+</div>
+
+<!-- End nuong meals -->
+
+<!--  Get kho meals -->
+
+<div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+    <h1 class="text-center">Món Xào</h1>
+    <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+        data-aos-duration="3000">
+    <section class="pb-4 pt-4">
+      <div class="d-flex mb-2 align-items-center">
+        <a href="/categories/Xào" class="ms-auto">View More</a>
+      </div>
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+       <%if(typeof food.xao !== 'undefined' && food.xao.length > 0) {%> 
+        <% food.xao.forEach(function(recipe, index){ %> 
+          <div class="col-md-3 py-3 py-md-0">    
+        <div class="col text-center category__link">
+          <div class="card">
+         <a href="/recipe/<%= recipe._id %>" >
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>"loading="lazy">
+            </div>               
+          </a>
+          <div class="card-body">
+            <div class="pt-1"><%= recipe.name %></div>  
+        <div class="col text-dark category__link">
+          <h6><%=recipe.calories%> Kcal <button id=<%=recipe.id%> class="btn mr-md-2 mb-md-0 mb-2 btn-warning btn-submit" >Add to meal</button></h6>  
+        </div>   
+      </div>  
+      </div>
+    </div> 
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+   </div>
+</div>
+
+<!-- End chien meals -->
+
+<!-- Submit - Start -->
+<section class="px-4 py-5 my-5 text-center">
+    <img src="/img/publish-recipe.png" class="d-block mx-auto mb-4 img-fluid" alt="Publish your recipe for FREE today" width="566" height="208" loading="lazy">
+    <h1 class="display-5 fw-bold">Publish your recipe for FREE today</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Thỏa sức chia sẽ món ăn cũng như công thức của bạn đến với mọi người nào!</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <% if (userStatus !== ''&& userStatus.length > 0) { %>
+        <a href="/submit-recipe/<%=userStatus[0]._id%> " class="btn btn-primary btn-dark btn-lg">Thêm món ăn</a>
+        <% } %> 
+      </div>
+    </div>
+  </section>
+
+  <!-- Submit - End -->
+

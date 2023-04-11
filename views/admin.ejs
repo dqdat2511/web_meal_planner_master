@@ -1,0 +1,45 @@
+
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Recent Salse</h6>
+            <a href="admin/user">User</a> 
+            <a href="/submit-recipeadmin">Create</a>
+        </div>
+        
+        <a class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Calo</th>
+                        <th scope="col">Fiber</th>
+                        <th scope="col">Categories</th>
+                        <th scope="col">Protein</th>
+                        <th scope="col">Carb</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% recipe.forEach(function(recipe, index) { %>
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+                            <td><%=recipe.name%> </td>
+                            <td><%= recipe.calories %>  </td>
+                            <td><%=recipe.fiber%> </td>
+                            <td><%= recipe.category %> </td>
+                            <td><%= recipe.protein%> </td>
+                            <td><%= recipe.carbohydrates%> </td>
+                            <td><a class="btn btn-sm btn-primary btn-lg px-4 gap-3" href="/admin/update/<%=recipe._id%>">Sửa</a>
+                                    <button id="<%=recipe._id%>" type="submit" class="btn btn-sm btn-danger btn-delete-food btn-lg px-4">Xóa</button></form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                          
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

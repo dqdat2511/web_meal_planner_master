@@ -1,0 +1,201 @@
+<style>
+  .limited-text {
+  height: 200px !important;
+  overflow: hidden;
+  text-overflow: ellipsis ;
+}
+</style>
+  <link rel="stylesheet" href="/css/normalize.css">
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- <div class="container-xxl px-md-5 bg-light shadow-lg">
+<% if (recipe != null) { %>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page"><%- recipe.name %></li>
+        </ol>
+      </nav> 
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">      
+        <div class="col-12 col-md-4 ">
+          <div class="box">  
+          <img src="/uploads/<%- recipe.image %>" class="img-fluid" style="top: 20px;" alt="<%-recipe.name %>" loading="lazy">
+          <div class="row pt-4">
+            <div class="card-body">
+              <div class="col-12"><h1><%- recipe.name %></h1></div>
+            <div  class="col text-center category__link">
+              <button id=<%-recipe.id%> class="btn btn-submit">Add to meal</button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      
+      <div class="modal-content p-5 rounded-4 shadow material-content recipe-content">
+        <div class="col-12 col-md-6">
+        <h1 style="color: white;" class="text-center" onclick="showall()">Hướng dẫn</h1>
+        <p class="lead" id="myHD" ><%-recipe.description %> </p>    
+    </div>
+    </div>
+  </div>
+    <div class="row align-items-md-stretch">
+        <div class="col-12 col-md-6">  
+          <div class="modal-content p-5 rounded-4 shadow recipe-content" >    
+          <div class="row">
+              <div class="text-center" style="color: white;"><h1>Dinh dưỡng</h1></div>
+               <div class="col-12 mb-4" ><i class="bi bi-tag"></i>                                     
+                <ul class="list-group list-group-flush">         
+                  <li class="list-group-item">Năng lượng: <%=recipe.calories%></li>
+                  <li class="list-group-item">Đạm: <%=recipe.protein%></li>          
+                  <li class="list-group-item">Chất bột đường: <%=recipe.carbohydrates%></li>
+                  <li class="list-group-item">Loại: <%=recipe.category%></li>
+                  <li class="list-group-item">Chất béo: <%=recipe.fat%></li>
+                  <li class="list-group-item">Chất xơ: <%=recipe.fiber%></li>
+                  <li class="list-group-item">Đường: <%=recipe.sugar%></li>
+                  <li class="list-group-item">Số lượng: <%=recipe.servingsize%></li>
+                </ul>             
+            </div> 
+          </div>
+          </div>
+        </div>
+        
+        <div class="col-12 col-md-6">  
+          <div class="modal-content p-5 rounded-4 shadow material-content" >  
+          <div class="row ">
+
+         <div class="col-12 mb-4">      
+          <div class="text-center" style="color: white;"><h1>Nguyên liệu</h1></div>
+          <ul class="list-group list-group-flush">
+            <% recipe.ingredients.forEach(function(ingredients, index){ %>
+              <li class="list-group-item" style="background-color: #FF9966!important;"><%=ingredients%></li>
+            <% }) %>
+          </ul>              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+      
+    <% } else { %>
+      <p>No item found.</p>
+    <% } %>
+
+  </div> -->
+  <% if (recipe!== null) { %>
+    <main class="page">
+      <div class="recipe-page">
+        <section class="recipe-hero">
+          <img src="/uploads/<%- recipe.image %>" class="img-fluid" style="top: 20px;" alt="<%-recipe.name%>" loading="lazy">
+          
+          <article class="recipe-info">
+            <h2><%- recipe.name %></h2>
+            <div  class="limited-text">
+              <p>
+                <%-recipe.description %>
+              </p>
+            </div>
+         
+            <div class="recipe-icons">
+              <article>
+                <i class="fas fa-clock"></i>
+                <h5>prep time</h5>
+                <p>30 min.</p>
+              </article>
+              <article>
+                <i class="far fa-clock"></i>
+                <h5>cook time</h5>
+                <p>15 min.</p>
+              </article>
+              <article>
+                <i class="fas fa-user-friends"></i>
+                <h5>serving</h5>
+                <p><%=recipe.servingsize%></p>
+              </article>
+            </div>
+            <p class="recipe-tags">
+              Tags : <a href="tag-template.html"><%=recipe.category %></a>     
+              <a href="tag-template.html"><%=recipe.name %></a>     
+            </p>
+          </article>
+        </section>
+        <!-- content -->
+        <section class="recipe-content">
+          <article>
+            <h4>instructions</h4>
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>Năng lượng</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.calories%>
+              </p>
+            </div>
+            <!-- end of single instruction -->
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>Đạm</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.protein%>
+              </p>
+            </div>
+            <!-- end of single instruction -->
+            <!-- single instruction -->
+            <div class="single-instruction">
+              <header>
+                <p>Chất bột đường</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.carbohydrates%>
+              </p>
+            </div>
+            <div class="single-instruction">
+              <header>
+                <p>Chất béo</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.fat%>
+              </p>
+            </div>
+            <div class="single-instruction">
+              <header>
+                <p>Chất xơ</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.fiber%>
+              </p>
+            </div>
+            <div class="single-instruction">
+              <header>
+                <p>Đường</p>
+                <div></div>
+              </header>
+              <p>
+                <%=recipe.sugar%>
+              </p>
+            </div>
+            <!-- end of single instruction -->
+          </article>
+          <article class="second-column">
+            <div>
+              <h4>ingredients</h4>
+              <% recipe.ingredients.forEach(function(ingredients, index){ %>
+              <p class="single-ingredient"><%=ingredients%></p>
+              
+              <% }) %>
+            </div>
+          </article>
+        </section>
+      </div>
+    </main>
+    <% } else { %>
+      <p>No item found.</p>
+    <% } %>

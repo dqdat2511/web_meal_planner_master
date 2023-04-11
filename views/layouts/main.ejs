@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title != 'undefined' ? title: 'Meal Planner - Made by Inutritious'%></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/toast.css">
+<link rel="stylesheet" href="/css/template.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+ 
+<style>
+    #signup-btn{
+        display: none;
+    }
+    
+</style>
+
+</head>
+
+<div id="toasts"></div>
+  
+  <!-- <div>
+    <div onclick="showSuccessToast();" class="btn btn--success">Show success toast</div>
+    <div onclick="showErrorToast();" class="btn btn--danger">Show error toast</div>
+  </div> -->
+  
+  <script>
+
+  </script>
+
+<body onload="checkAccount()">
+  <div class="main-content"  data-aos="fade-down"
+  data-aos-easing="linear"
+  data-aos-duration="1500">      
+
+  <nav class="navbar navbar-expand-md" id="navbar-color"  data-aos="fade-down"
+  data-aos-easing="linear"
+  data-aos-duration="1500">   
+
+  <div class="container">
+  <!-- Brand -->
+  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+    <img src="/img/logo.jpg" width="229" height="68" alt="Meal-Planner-logo">
+</a>
+  <!-- Toggler/collapsibe Button -->
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <!-- <a href="/" class="nav-link px-2 link-secondary">Home</a>
+        <a href="/about" class="nav-link px-2 link-secondary">About</a> -->
+        <!-- <a href="/bmr-build" class="nav-link px-2 link-secondary"></a>
+        <a href="/contact" class="nav-link px-2 link-secondary">Submit</a>                -->
+    </ul>
+    <div class="col-md-3 text-end">
+        <form method="POST" action="/search">
+            <input type="search" name="searchTerm" class="form-control" placeholder="Search... " aria-label="Search">
+        </form>
+    </div>  
+    <ul class="nav" id="logBtn">
+        <li class="nav-item"><a href="/login/" class="nav-link link-dark px-2">Login</a></li>
+        <li class="nav-item"><a href="/signup" class="nav-link link-dark px-2">Sign up</a></li>
+      </ul>
+    <div  id="dropdownlist" class="dropdown text-end" id="dropdown_log" >
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+        </a>
+
+        <ul class="dropdown-menu text-small" style="">
+          <li><a id="nameUser" class="dropdown-item">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+     
+        <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+    
+        </ul>
+      </div>
+
+
+</div>
+</nav>
+<!-- navbar end -->
+
+</div>     
+        <!-- <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                <img src="/img/logo.jpg" width="229" height="68" alt="Meal-Planner-logo">
+            </a>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <a href="/" class="nav-link px-2 link-secondary">Home</a>
+                <a href="/about" class="nav-link px-2 link-secondary">About</a>
+                <a href="/bmr" class="nav-link px-2 link-secondary">Submit</a>
+                <a href="/contact" class="nav-link px-2 link-secondary">Submit</a>               
+            </ul>
+            <div class="col-md-3 text-end">
+                <form method="POST" action="/search">
+                    <input type="search" name="searchTerm" class="form-control" placeholder="Search... " aria-label="Search">
+                </form>
+            </div>  
+            <ul class="nav" id="logBtn">
+                <li class="nav-item"><a href="/login/" class="nav-link link-dark px-2">Login</a></li>
+                <li class="nav-item"><a href="/signup" class="nav-link link-dark px-2">Sign up</a></li>
+              </ul>
+            <div class="dropdown text-end" >
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" style="">
+                  <li><a id="nameUser" class="dropdown-item">New project...</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+              </div>
+        </header>  -->
+        <main>
+            <%- body -%>
+        </main>
+        <footer id="footer" style="margin-top: 50px;" data-aos="fade-up"
+        data-aos-duration="1500">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 footer-contact">
+                            <h3>Inutrition</h3>
+                            <p>
+                                Quốc Đạt <br><br>
+                                Quang Trưởng <br><br>
+                                Minh Tân <br><br>
+                                Bảo Quang <br><br>  
+                                Minh Toàn <br><br>  
+                            </p>
+                            <strong>Phone: <strong>+848125552939</strong></strong>
+                            <br> 
+                            <strong>Email: <strong>mealplanner76@gmail.com</strong></strong>
+                        </div>
+    
+                        <div class="col-lg-3 col-md-6 footer-links">
+                           <h4>Usefull Links</h4>
+                           <ul>
+                            <li><i class="bx bx-chevron-right"><a href="#">Home</a></i></li>
+                            <li><i class="bx bx-chevron-right"><a href="#">About</a></i></li>
+                            <li><i class="bx bx-chevron-right"><a href="#">Contact</a></i></li>
+                            <li><i class="bx bx-chevron-right"><a href="#">Services</a></i></li>
+                            <li><i class="bx bx-chevron-right"><a href="#">Privacy Policay</a></i></li>
+                           </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Our Services</h4>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis, molestias!
+                                <ul>
+                                    <li><i class="bx bx-chevron-right"><a href="#">Dishes</a></i></li>
+                                    <li><i class="bx bx-chevron-right"><a href="#">Chicken</a></i></li>
+                                    <li><i class="bx bx-chevron-right"><a href="#">Fish</a></i></li>
+                                    <li><i class="bx bx-chevron-right"><a href="#">Burger</a></i></li>
+                                    <li><i class="bx bx-chevron-right"><a href="#">Pizza</a></i></li>
+                                </ul>
+                            </p>
+                        </div>
+    
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Our Socail Network</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus, ducimus.</p>
+                            <div class="socail-links mt-3">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="#" class="google-plus"><i class="bx bxl-google-plus"></i></a>
+                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container py-4">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Inutrition</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    Designed By <a href="#">Dương Quốc Đạt</a>
+                </div>
+            </div>
+        </footer>
+     
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    
+    <script src="/js/navbar.js"></script>
+    <script src="/js/toast.js"></script>  
+    <script src="/js/script.js"></script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/client.js"></script>
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>

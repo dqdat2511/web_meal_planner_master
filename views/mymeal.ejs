@@ -1,0 +1,153 @@
+<link rel="stylesheet" href="/css/mymeal.css">
+
+<div class="container-xxl ">
+<section class="pb-4 pt-4">  
+  <button type="button" class="btn btn-white w-100 align-items-stretch d-flex">
+    <div class="icon icon-left icon-primary d-flex align-items-center justify-content-center">
+      <i class="ion-ios-brush"></i>
+      <i class="bi bi-tag"></i> 
+    </div>
+    <div class="text text-right">
+    <h4><h3 <%if(totals>userInfo[0].calories){%>style="color:red"<%}%> ><%= totals%> Kcal</h3></h4>
+    <span>Năng lượng dự tính</span>
+    </div>
+    </button>
+    <div class="container" id="dishe" data-aos="fade-up"
+       data-aos-duration="1500">
+    <h1 class="text-center">Món ăn đã chọn</h1>
+    <div class="row" style="margin-top: 20px;" data-aos="fade-up"
+    data-aos-duration="3000">
+    <section class="pb-4 pt-4">
+    <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+       <% if(typeof userInfo[0].foodinformation !== 'undefined' ) {%> 
+        <%for(let i =0;i<userInfo[0].foodinformation.length;i++){%>   
+          <div class="col-md-3 py-3 py-md-0">    
+          <div  class="col text-center category__link">
+            <div class="card">
+        <a href="/recipe/<%= userInfo[0].foodinformation[i]._id %> ">
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= userInfo[0].foodinformation[i].image %>" alt="<%= userInfo[0].foodinformation[i].name %>" loading="lazy">
+            </div>
+        </a> 
+        <div class="pt-1"><%= userInfo[0].foodinformation[i].name %>  </div>  
+        <div class="pt-1">Số lượng:<%=userInfo[0].foodinformation[i].numberofservingsize%>  </div>  
+
+        <div  class="col text-center category__link">
+          <button id="<%=userInfo[0].foodinformation[i].id%>" type="submit" class="btn button btn-delete button--rhea" >Xóa</button>
+        </div>  
+      </div>
+    </div>
+  </div>
+        <% } %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+ 
+  </div>
+</section>
+  </div>
+  </section>
+  
+  <!-- End chien meals -->
+  <!-- Bữa sang -->
+  <div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+ <h1 class="text-center">Bữa Sáng</h1>
+ <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+ data-aos-duration="3000">
+  <section class="pb-4 pt-4">
+    <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+       <% if(typeof sang !== 'undefined' ) {%> 
+        <% sang.forEach(function(sang,index) { %>
+          <div class="col text-center category__link">
+            <div class="card">
+        <a href="/recipe/<%=sang.id %> ">
+            <div class="category__img category__img--large shadow" >
+            <img src="/uploads/<%= sang.image %>" alt="<%= sang.name %>" loading="lazy">
+            </div>
+          <div class="pt-1"><%= sang.name %></div>      
+        </a> 
+        <div  class="col text-center category__link">
+          <button id="<%=sang.id%>" type="submit" class="btn button btn-delete button--rhea">Xóa</button>
+        </div>  
+      </div>
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+</div>
+</div>
+  <!-- End bữa trưa -->
+
+  <!-- Bữa trưa -->
+  <div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+ <h1 class="text-center">Bữa trưa</h1>
+ <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+ data-aos-duration="3000">
+  <section class="pb-4 pt-4">
+    <div class="row row-cols-1 row-cols-md-4 mb-4 text-center">
+       <% if(typeof trua !== 'undefined' ) {%> 
+        <% trua.forEach(function(trua,index) { %>
+          <div class="col text-center category__link">
+            <div class="card">
+        <a href="/recipe/<%=trua.id %> ">
+            <div class="category__img category__img--large shadow" >
+            <img src="/uploads/<%= trua.image %>" alt="<%= trua.name %>" loading="lazy">
+            </div>
+          <div class="pt-1"><%= trua.name %></div>      
+        </a> 
+        <div  class="col text-center category__link">
+          <button id="<%=trua.id%>" type="submit" class="btn button btn-delete button--rhea">Xóa</button>
+        </div>  
+      </div>
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+</div>
+</div>
+  <!-- End bữa trưa -->
+
+
+   <!-- Bữa toi -->
+   <div class="container" id="dishe" data-aos="fade-up"
+    data-aos-duration="1500">
+ <h1 class="text-center">Bữa tối</h1>
+ <div class="row" style="margin-top: 3px;" data-aos="fade-up"
+ data-aos-duration="3000">
+   <section class="pb-4 pt-4">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+       <% if(typeof chieu !== 'undefined' ) {%> 
+        <% chieu.forEach(function(chieu,index) { %>
+          <div  class="col text-center category__link">
+            <div class="card">
+        <a href="/recipe/<%=chieu.id %> ">
+            <div class="category__img category__img--large shadow">
+            <img src="/uploads/<%= chieu.image %>" alt="<%= chieu.name %>" loading="lazy">
+            </div>
+          <div class="pt-1"><%= chieu.name %></div>      
+        </a> 
+        <div  class="col text-center category__link">
+          <button id="<%=chieu.id%>" type="submit" class="btn button btn-delete button--rhea">Xóa</button>
+        </div>  
+      </div>
+    </div>
+        <% }) %> 
+        <% } else { %>
+          <p>No Item Found</p>
+          <% } %>  
+    </div>
+  
+  </section>
+</div>
+  <!-- End bữa toi -->

@@ -1,0 +1,301 @@
+
+
+<style>
+#pt-4{
+  padding-left: 50%;
+}
+#h1{
+  font-family: 'Roboto', sans-serif;
+}
+#allNutri, #view-all-meal{
+  display: none;
+}
+.btn-info{
+  color: white;
+}
+</style>
+<div class="container-xxl px-md-5 bg-white shadow-lg">
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel"> 
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+  </div>
+  <div class="carousel-inner">
+    <% if(typeof BuaSangresult !== 'undefined' ) {%>  
+    <div class="carousel-item active">
+      <img class="bd-placeholder-img" width="100%" height="500px" src="/uploads/<%= BuaSangresult.image %>"  alt="<%=BuaSangresult.name%>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect> </img>
+      <div class="container">
+        <div class="carousel-caption text-start">
+          <h1 class="pb-4">Meal-Planner</h1>
+          <h4>Dựa vào dữ liệu, bạn nên tiêu thụ  <%=targetcalorie%>(Kcal) </h4>  
+          <h4>Bạn có thể tham khảo cho bữa sáng</h4>
+          <h1><%= BuaSangresult.name%></h1>
+          <p> <%= BuaSangresult.calories %> Kcal</p>
+          <p><a id=<%=BuaSangresult.id%> class="btn btn-info btn-submit-sang">Thêm</a></p>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+      <p>No Item Found</p>
+      <% } %>
+
+    <% if(typeof protenresult !== 'undefined' ) {%> 
+    <div class="carousel-item">
+      <img class="bd-placeholder-img" width="100%" height="500px" src="/uploads/<%=protenresult.image %>" alt="<%=protenresult.name%>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></img>
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1 class="pb-4">Meal-Planner</h1>
+          <h4>Dựa vào dữ liệu, bạn nên tiêu thụ  <%=targetcalorie%>(Kcal) </h4>  
+          <h4>Bạn có thể tham khảo cho bữa sáng</h4>
+          <h1><%=protenresult.name%></h1>
+          <p> <%= protenresult.calories %> Kcal</p>
+          <p><a id=<%=protenresult.id%> class="btn btn-info btn-submit-sang">Thêm</a></p>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+      <p>No Item Found</p>
+      <% } %>
+      <% if(typeof Carbresult !== 'undefined' ) {%> 
+    <div class="carousel-item">
+      <img class="bd-placeholder-img" width="100%" height="500px" src="/uploads/<%= Carbresult.image %>" alt="<%=Carbresult.name%>" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></img>
+      <div class="container">
+        <div class="carousel-caption text-end">
+          <h1 class="pb-4">Meal-Planner</h1>
+          <h4>Dựa vào dữ liệu, bạn nên tiêu thụ <%=targetcalorie%>(Kcal) </h4>  
+          <h4>Bạn có thể tham khảo cho bữa sáng</h4>
+          <h1><%= Carbresult.name%></h1>
+          <p><%= Carbresult.calories%> Kcal</p>
+          <p><a id=<%=Carbresult.id%> class="btn btn-info btn-submit-sang">Thêm</a></p>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
+      <p>No Item Found</p>
+      <% } %>
+  </div>   
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+<!--Trua-->
+<section class="pt-4 pt-4">
+
+<div class="d-flex mb-2 align-items-center">
+  <div class="col-12 mb-4">Các món bạn có thể tham khảo cho bữa trua 
+    <% if (typeof trua !== 'undefined') { %>
+      tổng năng lượng cho bữa ăn: <i> <%=trua.totalSangTrua%> (Kcal)</i>
+  <% } %>
+  <button id="btn-add-lunch" value="<%=userID%>/<%=trua.allTruaID%>/<%=chieu.allChieuID%>" class="btn btn-info btn-add-meal" name="idFood">Lưu bữa ăn</button>
+
+    </div>  
+  
+</div>
+<!-- Chatxo -->
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+  <% if(typeof trua.XoTruaResult !== 'undefined' ) {%>   
+  <div class="col text-center category__link">     
+  <a href="/recipe/<%= trua.XoTruaResult._id %> " class="col text-center category__link">
+    <div class="category__img category__img--large shadow ">
+    <img src="/uploads/<%= trua.XoTruaResult.image %>" alt="<%=trua.XoTruaResult.name%>" style="top: 20px; border-radius: 5%;"loading="lazy">
+    </div>
+  <div class="pt-1"><%= trua.XoTruaResult.name %></div>
+</a>
+
+</div>
+<% } else { %>
+  <p>No Item Found</p>
+  <% } %>  
+<!-- end chat xo -->
+
+<!-- chatdam -->
+  <% if(typeof trua.Damtrua !== 'undefined' ) {%>   
+    <div class="col text-center category__link ">     
+    <a href="/recipe/<%= trua.Damtrua.DamTruaresult._id %> " class="col text-center category__link">
+      <div class="category__img category__img--large shadow">
+      <img src="/uploads/<%= trua.Damtrua.DamTruaresult.image %>" alt="<%=trua.Damtrua.DamTruaresult.name%>"style="top: 20px; border-radius: 5%;" loading="lazy">
+      </div>
+    <div class="pt-1"><%= trua.Damtrua.DamTruaresult.name %></div>
+  </a>
+  
+</div>
+  <% } else { %>
+    <p>No Item Found</p>
+    <% } %>
+
+
+    
+<!-- end chat dam -->
+
+<!-- tinhbot -->
+<% if(typeof trua.tinhbotresult !== 'undefined' ) {%>   
+<div class="col text-center category__link">     
+<a href="/recipe/<%= trua.tinhbotresult._id %> " class="col text-center category__link">
+<div class="category__img category__img--large shadow">
+<img src="/uploads/<%= trua.tinhbotresult.image %>" alt="<%=trua.tinhbotresult.name%>"style="top: 20px; border-radius: 5%;" loading="lazy">
+</div>
+<div class="pt-1"><%= trua.tinhbotresult.name %></div>
+</a>
+
+</div>
+<% } else { %>
+<p>No Item Found</p>
+<% } %>  
+<!-- end tinh bot -->
+</div>
+</section>
+
+<!-- EndTrua -->
+
+<!-- Chieu -->
+
+<section class="pt-4 pt-4">
+
+<div class="d-flex mb-2 align-items-center">
+<div class="col-12 mb-4">Các món bạn có thể tham khảo cho bữa chiều 
+  <% if (typeof chieu !== 'undefined') { %>
+    tổng năng lượng cho bữa ăn: <i> <%=chieu.totalChieu%> (Kcal)</i>
+<% } %>
+  </div>  
+
+</div>
+<!-- Chatxo -->
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+<% if(typeof chieu.XoChieuResult !== 'undefined' ) {%>   
+<div class="col text-center category__link">     
+<a href="/recipe/<%= chieu.XoChieuResult._id %> " class="col text-center category__link">
+  <div class="category__img category__img--large shadow ">
+  <img src="/uploads/<%= chieu.XoChieuResult.image %>" alt="<%=chieu.XoChieuResult.name%>" style="top: 20px; border-radius: 5%;"loading="lazy">
+  </div>
+<div class="pt-1"><%= chieu.XoChieuResult.name %></div>
+</a>
+
+</div>
+<% } else { %>
+<p>No Item Found</p>
+<% } %>  
+<!-- end chat xo -->
+
+<!-- chatdam -->
+<% if(typeof chieu.DamChieu !== 'undefined' ) {%>   
+  <div class="col text-center category__link ">     
+  <a href="/recipe/<%= chieu.DamChieu.DamChieuresult._id %> " class="col text-center category__link">
+    <div class="category__img category__img--large shadow">
+    <img src="/uploads/<%= chieu.DamChieu.DamChieuresult.image %>" alt="<%=chieu.DamChieu.DamChieuresult.name%>"style="top: 20px; border-radius: 5%;" loading="lazy">
+    </div>
+  <div class="pt-1"><%= chieu.DamChieu.DamChieuresult.name %></div>
+</a>
+</div>
+<% } else { %>
+  <p>No Item Found</p>
+  <% } %>
+  
+  
+<!-- end chat dam -->
+
+<!-- tinhbot -->
+  <% if(typeof chieu.tinhbotChieuresult !== 'undefined' ) {%>   
+  <div class="col text-center category__link">     
+  <a href="/recipe/<%= chieu.tinhbotChieuresult._id %> " class="col text-center category__link">
+  <div class="category__img category__img--large shadow">
+  <img src="/uploads/<%= chieu.tinhbotChieuresult.image %>" alt="<%=chieu.tinhbotChieuresult.name%>"style="top: 20px; border-radius: 5%;" loading="lazy">
+  </div>
+  <div class="pt-1"><%= chieu.tinhbotChieuresult.name %></div>
+  </a>
+  </div>
+  <% } else { %>
+  <p>No Item Found</p>
+  <% } %>  
+  <!-- end tinh bot -->
+  </div>
+  </section>
+  <!-- EndChieu -->
+  <div class="d-flex mb-2 align-items-center">
+  <div class="col-12 mb-4">
+  <% if (typeof totalAll !== 'undefined') { %>
+    Tổng năng lượng cho 3 bữa ăn: <i> <%=totalAll%> (Kcal)</i>
+  <% } %>
+  <button id="btn-nutri" class="btn btn-primary" >Xem dinh dưỡng</button>
+  </div>  
+  </div>
+
+
+  <!-- other selection -->
+  <section>
+    <div class="d-flex mb-2 align-items-center">
+      <h2>Chọn món khác</h2>
+      <a id="view-all" class="ms-auto">Xem tất cả</a>
+    </div> 
+  </section>
+   <section class="pb-4 pt-4" id="view-all-meal">
+      <div class="d-flex mb-2 align-items-center">
+        <h2>Tất cả món ăn</i> </h2>  
+      </div>
+      <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+         <% if(typeof meal !== 'undefined' ) {%> 
+          <% meal.forEach(function(meal,index) { %>
+            <div  class="col text-center category__link">
+          <a href="/recipe/<%=meal._id %> " class="col text-center category__link">
+              <div class="category__img category__img--large shadow">
+              <img src="/uploads/<%= meal.image %>" alt="<%= meal.name %>" loading="lazy">
+              </div>
+            <div class="pt-1"><%= meal.name %></div>      
+          </a> 
+          <div  class="col text-center category__link">
+            <button id=<%=meal.id%> class="btn btn-primary btn-submit">Add to meal</button>
+            </div>
+        </div>
+          <% }) %> 
+          <% } else { %>
+            <p>No Item Found</p>
+            <% } %>  
+      </div>
+    </section>
+
+
+<script>
+document.getElementById('btn-nutri').addEventListener('click' ,(e) =>{
+  document.getElementById('allNutri').style.display= 'block';
+});
+  document.getElementById('view-all').addEventListener('click', (e)=>{
+    document.getElementById('view-all-meal').style.display = 'block';
+  })
+</script>
+
+  <div id= "allNutri"class="container-fluid pt-4 px-4 ">
+    <div style="background-color: #F0F8FF;" class="text-center rounded p-4">
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-dark">                     
+                        <th scope="col">Sugar</th>              
+                        <th scope="col">Fiber</th>
+                        <th scope="col">Fat</th>
+                        <th scope="col">Carb</th>
+                        <th scope="col">Protein</th>
+                    </tr>
+                </thead>
+                <tbody>                   
+                        <tr>                           
+                            <td><%=allNutri.sugarAll%> </td>                         
+                            <td><%=allNutri.fiberAll%> </td>
+                            <td><%=allNutri.fatAll %> </td>
+                            <td><%=allNutri.CarbAll%> </td>
+                            <td><%=allNutri.proteinAll%> </td>                        
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>

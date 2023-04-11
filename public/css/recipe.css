@@ -1,0 +1,49 @@
+.btn {
+    background-color: #01c0ff; /* Green */
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .btn-submit {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #01c0ff;
+  }
+  
+  .btn-submit:hover {
+    background-color: #01c0ff;
+    color: white;
+  }
+  .recipe-content{
+    width: 100%;
+     height: auto;
+     background-color: #33CCFF;
+ }
+ .material-content{
+     width: 100%;
+     height: auto;
+     background-color:#FF9966;
+ 
+ }
+ .list-group-item{
+   background-color: #33CCFF!important;
+   color: azure;
+ }
+ .box{
+   padding: 2rem;
+     background: #fff;
+     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 10%);
+     border: .1rem solid rgba(0,0,0,.3);
+     border-radius: .5rem;
+     text-align: center;
+     flex: 1 1 30rem;
+     position: relative;
+ }
